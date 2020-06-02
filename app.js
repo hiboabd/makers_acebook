@@ -9,6 +9,7 @@ var logger = require('morgan');
 console.log(1);
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
+var testRouter = require('./routes/test');
 // variables made that require the files in the route folder.
 
 var app = express();
@@ -32,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // route setup
 app.use('/', homeRouter);
 app.use('/posts', postsRouter);
+app.use('/test', testRouter);
+
 // calls homeRouter and postRouter variables (referenced above) and visits those files to implement the setup.
 console.log(4);
 // catch 404 and forward to error handler
