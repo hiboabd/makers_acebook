@@ -1,4 +1,6 @@
 var User = require('../models/user')
+const bcrypt = require('bcrypt');
+
 
 var UserController = {
   New: function(req, res){
@@ -7,20 +9,28 @@ var UserController = {
   },
 
   Create: function(req, res){
+
     User.findOne({email: req.body.email}, function(err, email) {
       if (err) { throw err; }
+
+
       if (email) {
+
         res.render('user/new', { msg:'user exist' });
       }
       else {
-        var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: req.body.password});
+        const salt = bcrypt.genSalt();
+        const hashedPassword =  await bcrypt.hash(req.body.password, salt)
+        var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hashedPassword);
         user.save(function(err){
           if (err) { throw err; }
           res.render('posts/index', { msg:"Welcome " + user.firstName + " ! " })
         });
       }    
     });  
-  } 
+  }
+  
+  
 };
 
 module.exports = UserController;
