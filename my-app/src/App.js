@@ -30,7 +30,7 @@ class App extends React.Component{
   }
 
   handleChange = (event) => {
-    const target = event.target;
+    const target = event.target; //<li> 
     const name = target.name;
     const value = target.value;
 
