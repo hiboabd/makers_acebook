@@ -40,8 +40,6 @@ export default class Signup extends Component {
   }
 
 
-
-
   onSubmit(e) {
     e.preventDefault();
     const user = {
