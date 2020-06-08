@@ -1,5 +1,31 @@
 import React from 'react';
 import axios from 'axios';
+import Signup from './components/Signup.component';
+
+
+//app.js
+// import React from 'react';
+// import { BrowserRouter as Router, Route } from "react-router-dom";
+// import './App.css';
+// import Posts from "./components/posts.component";
+// import CreatePosts from "./components/create-posts.component";
+// import Signup from './components/Signup.component';
+// import Navbar from "./components/navbar.component";
+// // function App() {
+//   return (
+//     <Router>
+//       <Navbar /> 
+//       <Route path="/posts" exact component={Posts} />
+//       <Route path="/posts/new" exact component={CreatePosts} />
+//       <Route path="/user/new" exact component={Signup} />
+//       <Route path="/" exact component={Navbar} />
+//     </Router>
+//   );
+// }
+// export default App;
+
+
+
 
 // Components are like functions that return HTML elements.
 class App extends React.Component{
@@ -45,6 +71,8 @@ class App extends React.Component{
     const post = {
       message: this.state.post
     };
+
+    console.log(post)
 
     axios({
       url: '/api/posts',
@@ -94,6 +122,10 @@ class App extends React.Component{
         <div className="newsfeed">
           <h2>Timeline</h2>
           {this.displayPosts(this.state.posts)}
+        </div>
+
+        <div className="SignUp">
+          <Signup/>
         </div>
       </div>
     );

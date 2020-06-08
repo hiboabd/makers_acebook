@@ -4,15 +4,18 @@ const bcrypt = require('bcrypt'); //lib for bcryption
 
 var UserController = {
   New: function(req, res){
-    res.render('user/new', {});
+    // res.status(201).redirect('/api/user/new');
     // the 'user/new' is referring to the new.hbs file in the views > user folder
   },
 
   Create: function(req, res){
-    User.findOne({email: req.body.email}, function(err, email) {
+    console.log("create before function")
+    User.findOne({email: req.body.email}, async function(err, email) {
       if (err) { throw err; }
       if (email) {
-        res.render('user/new', { msg:'user exist' });
+        // res.render('user/new', { msg:'user exist' });
+        // res.status(201).redirect('/api/user/new');
+        // console.log("create function")
       }
       else {
         try {
@@ -20,7 +23,8 @@ var UserController = {
           var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hashedPassword});
           user.save(function(err){
           if (err) { throw err; }
-            res.render('posts/index', { msg:"Welcome " + user.firstName + " ! " })
+            // res.render('posts/index', { msg:"Welcome " + user.firstName + " ! " })
+            res.status(201).redirect('/api/user/new');
           });
         } catch {
          res.status(500).send();
