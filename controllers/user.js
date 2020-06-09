@@ -21,10 +21,13 @@ var UserController = {
         try {
           const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 = salt structer = salt + password bcz if the passwords are same for both users, salt generates different values for every each time.
           var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hashedPassword});
+          console.log("we are in backend")
+          console.log(user)
           user.save(function(err){
+            console.log("user in db now")
           if (err) { throw err; }
-            // res.render('posts/index', { msg:"Welcome " + user.firstName + " ! " })
-            res.status(201).redirect('/api/user/new');
+            //res.render('posts/index', { msg:"Welcome " + user.firstName + " ! " })
+           res.status(201).redirect('/api/posts');
           });
         } catch {
          res.status(500).send();
