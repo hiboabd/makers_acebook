@@ -59,7 +59,7 @@ export default class Signup extends Component {
 
     .then(response => {
       console.log('Data has sent to server');
-      console.log(response.data);
+      console.log(response);
     })
     .catch(err => {
       console.log(err)
