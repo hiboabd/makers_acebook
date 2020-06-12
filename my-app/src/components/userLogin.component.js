@@ -27,6 +27,9 @@ export default class userLogin extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    var wrongPassword = document.getElementById('wrong-password')
+    wrongPassword.innerHTML = "";
+
     const user = {
       email: this.state.email,
       password: this.state.password
@@ -45,7 +48,8 @@ export default class userLogin extends Component {
       if(response.data.success){
         window.location.replace("/posts/" + response.data.userId)
       }else{
-        alert(response.data.message)
+        wrongPassword.innerHTML = "Email and/or password is incorrect, please try again";
+        wrongPassword.setAttribute("style", "color:red");
       }
     })
     .catch(err => {
@@ -81,7 +85,7 @@ export default class userLogin extends Component {
                    value={this.state.email}
                    onChange={this.onChangeEmail}>
             </input>
-            <label>Password:</label>
+            <label>Password:</label> <div id="wrong-password"></div>
             <input type="password"
                    placeholder = "Password"
                    required
@@ -90,6 +94,7 @@ export default class userLogin extends Component {
                    value={this.state.password}
                    onChange={this.onChangePassword}>
             </input>
+
             <div className="see-password">
               <input type="checkbox" onChange={this.showPassword}></input>
               <label className="see-pass-wording">See Password</label>
