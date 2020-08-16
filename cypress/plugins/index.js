@@ -11,7 +11,36 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-module.exports = function() {
+var mongoose = require('mongoose');
+
+module.exports = (on) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  on('task', {
+    emptyUsers() {
+      return new Promise(function(resolve) {
+        mongoose.connect('mongodb://localhost:3030/acebook_test', function(err) {
+          console.log(mongoose.connection)
+          console.log(mongoose.connection.collections)
+          mongoose.connection.collections.users.drop(function() {
+            resolve('done');
+          });
+        });
+      });
+    },
+    emptyPosts() {
+      return new Promise(function(resolve) {
+        mongoose.connect('mongodb://localhost:3030/acebook_test', function(err) {
+          mongoose.connection.collections.posts.drop(function() {
+            resolve('done');
+          });
+        });
+      });
+    },
+    consoleLog(message) {
+      console.log("this is a console Log");
+      console.log(message);
+      return null
+    }
+  });
 }

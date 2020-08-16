@@ -81,6 +81,7 @@ export default class userLogin extends Component {
             <input type="email"
                    placeholder = "Email"
                    required
+                   id="email"
                    className="form-control"
                    value={this.state.email}
                    onChange={this.onChangeEmail}>
@@ -90,7 +91,7 @@ export default class userLogin extends Component {
                    placeholder = "Password"
                    required
                    id="password-id"
-                  className="form-control"
+                   className="form-control"
                    value={this.state.password}
                    onChange={this.onChangePassword}>
             </input>

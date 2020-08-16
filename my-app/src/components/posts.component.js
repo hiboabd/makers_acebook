@@ -189,7 +189,7 @@ export default class Posts extends React.Component{
             </div>)
           }
         })()}
-        </div> 
+        </div>
       </div>
     ));
 
@@ -251,6 +251,7 @@ export default class Posts extends React.Component{
               <form onSubmit={this.submit}>
                 <div className="form-input">
                   <textarea
+                    id="new-post-text-area"
                     name="post"
                     placeholder="Enter your post"
                     className="form-control"
@@ -261,23 +262,23 @@ export default class Posts extends React.Component{
                   </textarea>
                 </div>
                 <div className="text-right">
-                  <input className=" btn btn-dark btn-small custom-btn" type= "submit" value="Submit"/>
-                </div>    
+                  <input id="new-post-submit" className=" btn btn-dark btn-small custom-btn" type= "submit" value="Submit"/>
+                </div>
               </form>
-            </div> 
+            </div>
           </div>
         </div>
           <br></br>
 
           <div className="newsfeed wrapper-main shadow-sm p-3 mb-5 bg-white rounded">
-            <div className="container">
+            <div id="posts" className="container">
               <h2>Timeline</h2>
               {this.displayPosts(this.state.posts)}
             </div>
           </div>
 
           <div id="edit-posts">
-        
+
             <form onSubmit={this.save}>
               <div className="form-input card shadow-sm p-3 mb-5 bg-white rounded">
                 <div className="card-body container">
@@ -295,15 +296,15 @@ export default class Posts extends React.Component{
 
                 <div className="text-right">
                   <input className=" btn btn-dark btn-small custom-btn" type="submit" value="Submit"/>
-                </div>    
+                </div>
               </div>
             </form>
           </div>
         </div>
           </div>
-          
+
       </div>
-        
+
     );
   }
 }

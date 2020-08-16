@@ -100,7 +100,7 @@ export default class userSignup extends Component {
         emailError.setAttribute("style", "color:red");
         createdUser.innerHTML = "";
       }
-      
+
     })
     .catch(err => {
       console.log(err)
@@ -140,7 +140,7 @@ showPassword() {
                    value={this.state.firsName}
                    onChange={this.onChangeFirstName}>
             </input>
-           
+
             <label>Last Name:</label>
             <input type="text"
                    placeholder = "Last Name"
@@ -169,7 +169,7 @@ showPassword() {
                    value={this.state.password}
                    onChange={this.onChangePassword}>
             </input>
-      
+
             <label>Confirm Password:</label>  <div id="password-error"></div>
             <input type="password"
                    placeholder = "Confirm Password"
@@ -179,7 +179,7 @@ showPassword() {
                    value={this.state.confirmPassword}
                    onChange={this.onChangeConfirmPassword}>
             </input>
-            <input type="checkbox" onChange={this.showPassword}></input>
+            <input id="checkbox" type="checkbox" onChange={this.showPassword}></input>
             <label className="see-pass-wording">See Password</label>
 
           </div>
@@ -190,7 +190,7 @@ showPassword() {
         </form>
         </div>
 
-       
+
       </div>
     )
   }
